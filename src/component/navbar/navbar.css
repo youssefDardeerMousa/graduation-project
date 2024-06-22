@@ -1,0 +1,27 @@
+.btnn{
+    background-color: #1F3A14;
+    color: white;
+    width: 120px;
+    height: 50px;
+    border-radius: 12px;
+    font-size: 22px;
+    font-weight: 500;
+    border: none;
+}
+
+.icon{
+    color: black;
+    opacity: 75%;
+    border: 1px solid rgb(0, 0, 0, 0.25);
+    border-radius: 50%;
+    width: 35px;
+    height: 35px;
+    padding: 8px;
+}
+
+.navBar{
+    margin-left: 250px;
+}
+
+
+  

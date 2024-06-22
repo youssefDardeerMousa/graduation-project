@@ -1,0 +1,15 @@
+.order-container {
+    max-width: 600px;
+    margin: auto;
+  }
+  
+  .order-form .form-group {
+    margin-bottom: 15px;
+  }
+  
+  .order-form .error {
+    color: red;
+    font-size: 12px;
+    margin-top: 5px;
+  }
+  

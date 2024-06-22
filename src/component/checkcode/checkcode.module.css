@@ -1,0 +1,85 @@
+/* resetpass.module.css */
+
+.signupContainer {
+    height: 100vh;
+    background-color: #f8f9fa; /* Light grey background */
+}
+
+.signupCard {
+    background-color: #343a40; /* Dark background for the card */
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signupInfo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.signupInfo h5 {
+    color: #28a745; /* Green color for Clean Green text */
+}
+
+.signupForm {
+    text-align: center;
+}
+
+.textWhite {
+    color: #fff; /* White text color */
+}
+
+.textWarning {
+    color: #ffc107; /* Yellow color for link text */
+    text-decoration: none;
+}
+
+.textWarning:hover {
+    text-decoration: underline;
+}
+
+.textDanger {
+    color: #dc3545; /* Red color for error messages */
+}
+
+.btnPrimary {
+    background-color: #28a745; /* Green button */
+    border: none;
+    font-weight: bold;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.btnPrimary:disabled {
+    background-color: #6c757d; /* Grey color for disabled button */
+}
+
+.btnPrimary:hover:not(:disabled) {
+    background-color: #218838; /* Darker green on hover */
+}
+
+.otpField {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    font-size: 20px;
+    margin: 0 5px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+    color: #495057;
+    transition: border-color 0.3s;
+}
+
+.otpField:focus {
+    border-color: #80bdff;
+    outline: none;
+}
+
+.toast-success {
+    background-color: #28a745 !important; /* Green background for success toast */
+}
+
+.toast-error {
+    background-color: #dc3545 !important; /* Red background for error toast */
+}

@@ -1,0 +1,62 @@
+/* src/components/ProductList.css */
+
+.product-list {
+    padding: 20px;
+  }
+  
+  .search-filter-bar {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+  }
+  
+  .products-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+  }
+  
+  .product-card {
+    border: 1px solid #ddd;
+    padding: 10px;
+    width: calc(25% - 20px);
+    box-sizing: border-box;
+    text-align: center;
+  }
+  
+  .product-card img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .not-found {
+    color: red;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  .card-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .card {
+    width: 250px; /* Fixed width for all cards */
+    height: 350px; /* Fixed height for all cards */
+    margin: 10px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .card-img-top {
+    height: 150px; /* Fixed height for the image */
+    object-fit: cover; /* Ensure the image covers the area without stretching */
+  }
+  
+  .card-body {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  

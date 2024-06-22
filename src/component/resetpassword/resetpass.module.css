@@ -1,0 +1,82 @@
+/* src/components/signup/signup.module.css */
+.signupContainer {
+    height: 100vh;
+    background-color: #f0f0f0;
+  }
+  
+  .signupCard {
+    width: 700px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    overflow: hidden;
+    display: flex;
+  }
+  
+  .signupInfo {
+    flex: 3;
+    padding: 60px;
+    background-image: url('../../Image/photo_2024-06-11_14-41-59.jpg');
+    background-size: 50% 100%; /* Adjust the background-size to reduce the length */
+  background-position: center;
+  background-repeat: no-repeat;
+  }
+  
+  .signupForm {
+    flex: 10;
+    padding: 90px 30px 50px 30px;
+    background-color: rgba(20, 90, 50, 0.9);
+    width: 100%;
+  }
+  
+  .btnPrimary {
+    margin-top: 20px;
+    padding: 10px 20px;
+    background-color: #1aa033;
+    color: #ffffff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;;
+    display: block; /* Make the button a block element */
+    width: fit-content; /* Fit the button's width to its content */
+    margin-left: auto; /* Center the button horizontally */
+    margin-right: auto; /* Center the button horizontally */
+    
+  }
+  
+  .textWhite {
+    color: #ffffff;
+   text-align: center;
+    
+  }
+  
+  .textWarning {
+    color: #f4a261;
+    text-decoration: none;
+  }
+  
+  .textDanger {
+    color: red;
+    font-size: 0.875rem;
+  }
+  
+  /* toast color */
+  .toast-success {
+    background-color: #28a745 !important; /* Example green color for success */
+    color: #fff !important;   
+}
+  
+  .toast-error {
+    background-color: #dc3545 !important; /* Example red color for error */
+    color: #fff !important;   
+}
+.form_control {
+  border: none;
+  border-bottom:  #fff; /* Adding a bottom border */
+  background-color: rgba(20, 90, 50, 0.9) !important; /* Setting green background color */
+  color: white !important; /* Setting white text color */
+  margin-bottom: 10px; /* Adding some space between input fields */
+  padding: 8px 10px; /* Adding padding to the input fields */
+}
+.form_control::placeholder {
+  color: white !important; /* Setting white placeholder text color */
+}
