@@ -1,0 +1,33 @@
+/* Add this CSS to your stylesheet or within a <style> tag */
+.text-section h2,.text-section  h5 {
+    color: #145A32;
+  }
+  
+  .text-section {
+    padding: 20px;
+  }
+  
+  .text-section h5{
+    margin-top: -100px;
+  }
+
+  .text-section h2{
+    margin-top: 50px;
+  }
+  .text-section p{
+    margin-bottom: 50px;
+    color: #000000;
+    opacity: 80%;
+  }
+.btn{
+    width: 200px;
+    height: 50px;
+    font-weight: 500;
+    letter-spacing: .6px;
+    margin-top: 15px;
+}
+
+.feature{
+    margin-top: 180px;
+    margin-bottom: 500px;
+}

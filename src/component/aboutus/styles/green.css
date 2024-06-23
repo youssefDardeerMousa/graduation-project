@@ -36,13 +36,13 @@
 /*  CSS RESET   */
  
 
-html {
+.html {
   font-size: 62.5%;
   scroll-behavior: smooth;
   scroll-padding-top: 11rem;
 }
 
-body {
+.body {
   font-size: 1.6rem;
   font-family: "Poppins", sans-serif;
   transition: all 1s;

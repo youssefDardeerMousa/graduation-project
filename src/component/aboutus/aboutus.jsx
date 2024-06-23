@@ -14,8 +14,10 @@ import lo10 from "./assets/images/we.png"
 export default function Aboutus() {
   return (
     <> 
- <div>
-  <section className="container plants">
+  
+  <div className="html">
+<div className="body">
+<section className="container plants">
     <img src={lo1} alt className="plants__green-tree" />
     <h4 className="plants__first-heading">HOUSEPLANTS</h4>
     <h3 className="plants__second-heading">Fresh Your Space</h3>
@@ -169,6 +171,9 @@ export default function Aboutus() {
     </div>
   </section>
 </div>
+  </div>
+
+ 
 
     </>
   )

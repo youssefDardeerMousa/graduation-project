@@ -1,0 +1,30 @@
+.horizontal-scroll-container {
+    overflow-x: auto;
+    display: flex;
+    white-space: nowrap;
+    padding-bottom: 1rem;
+  }
+  
+  .horizontal-scroll-container::-webkit-scrollbar {
+    height: 8px;
+  }
+  
+  .horizontal-scroll-container::-webkit-scrollbar-thumb {
+    /* background-color: #145A32; */
+    border-radius: 4px;
+  }
+  
+  .horizontal-scroll-container .col {
+    flex: 0 0 auto;
+  }
+  
+  .text{
+    color:#239B56
+  }
+  .price{
+    color:#239B56
+  }
+
+  .plant{
+    color: #145A32;
+  }

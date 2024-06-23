@@ -106,7 +106,7 @@ const Cart = () => {
 
   return (
     <div className="container">
-      <h3 className="text-center my-5 text-success fw-bold">Your Cart</h3>
+      <h3 className="text-center my-5 fw-bold cartH">Shopping Cart</h3>
       <div className="row">
         {cartItems?.subcategory?.map((cartItem, index) => (
           <div key={index} className="col-lg-3 col-md-4 col-sm-6 my-3 mb-4">
@@ -114,38 +114,67 @@ const Cart = () => {
               <div className="card">
                 <div className="card-body d-flex justify-content-between align-items-center">
                   <div>
-                    <img src={cartItem.subcategoryId.Image.Url} className='w-100' alt="" />
-                    <h5 className="card-title text-center text-success fw-bold">{cartItem.subcategoryId.Name}</h5>
-                    <p className="card-text text-center text-success fw-bold">Quantity: {cartItem.quantity}</p>
-                    <p className="card-text text-center text-success fw-bold">Old Price: {cartItem.subcategoryId.price} EG</p>
-                    <p className="card-text text-center text-success fw-bold">New Price: {cartItem.subcategoryId.finalPrice} EG</p>
-                    <p className="card-text text-center text-success fw-bold">discount: {cartItem.subcategoryId.discount} %</p>
-
+                    <img
+                      src={cartItem.subcategoryId.Image.Url}
+                      className="w-100"
+                      alt=""
+                    />
+                    <h5 className="card-title text-center text-success fw-bold">
+                      {cartItem.subcategoryId.Name}
+                    </h5>
+                    <p className="card-text text-center text-success fw-bold">
+                      Quantity: {cartItem.quantity}
+                    </p>
+                    <p className="card-text text-center text-success fw-bold">
+                      Old Price: {cartItem.subcategoryId.price} EG
+                    </p>
+                    <p className="card-text text-center text-success fw-bold">
+                      New Price: {cartItem.subcategoryId.finalPrice} EG
+                    </p>
+                    <p className="card-text text-center text-success fw-bold">
+                      discount: {cartItem.subcategoryId.discount} %
+                    </p>
                   </div>
                   <div>
                     <button
                       className="btn btn-outline-success btn-sm me-2"
-                      onClick={() => handleIncreaseQuantity(cartItem.subcategoryId._id, cartItem.quantity)}
+                      onClick={() =>
+                        handleIncreaseQuantity(
+                          cartItem.subcategoryId._id,
+                          cartItem.quantity
+                        )
+                      }
                       disabled={updatingItemId === cartItem.subcategoryId._id}
                     >
                       +
                     </button>
                     <button
                       className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleDecreaseQuantity(cartItem.subcategoryId._id, cartItem.quantity)}
+                      onClick={() =>
+                        handleDecreaseQuantity(
+                          cartItem.subcategoryId._id,
+                          cartItem.quantity
+                        )
+                      }
                       disabled={updatingItemId === cartItem.subcategoryId._id}
                     >
                       -
                     </button>
                     <button
                       className="btn btn-outline-secondary btn-sm ms-2"
-                      onClick={() => handleRemoveItem(cartItem.subcategoryId._id, false)}
+                      onClick={() =>
+                        handleRemoveItem(cartItem.subcategoryId._id, false)
+                      }
                       disabled={updatingItemId === cartItem.subcategoryId._id}
                     >
                       {updatingItemId === cartItem.subcategoryId._id ? (
-                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                       ) : (
-                        'Remove'
+                        "Remove"
                       )}
                     </button>
                   </div>
@@ -158,40 +187,82 @@ const Cart = () => {
         {cartItems?.products?.map((cartItem, index) => (
           <div key={index} className="col-lg-3 col-md-4 col-sm-6 my-3 mb-4">
             {cartItem.productId && (
-              <div className="card">
+              <div className="card shadow-sm cardItem">
                 <div className="card-body d-flex justify-content-between align-items-center">
                   <div>
-                    <img src={cartItem.productId.defaultImage.url} className='w-100' alt="" />
-                    <h5 className="card-title text-center text-success fw-bold">{cartItem.productId.Name}</h5>
-                    <p className="card-text text-center text-success fw-bold">Quantity: {cartItem.quantity}</p>
-                    <p className="card-text text-center text-success fw-bold">Old Price: {cartItem.productId.finalPrice} EG</p>
-                    <p className="card-text text-center text-success fw-bold">New Price: {cartItem.productId.finalPrice} EG</p>
-                    <p className="card-text text-center text-success fw-bold">discount: {cartItem.productId.discount} %</p>
+                    <img
+                      src={cartItem.productId.defaultImage.url}
+                      className="w-100"
+                      alt=""
+                    />
+                    <p className="card-title text-center cartTitle">
+                      {cartItem.productId.Name}
+                    </p>
+
+                    <p className="card-text text-center  cartDetails">
+                      Old Price:{" "}
+                      <div className="cartItem">
+                        {cartItem.productId.finalPrice}
+                        EG
+                      </div>{" "}
+                    </p>
+                    <p className="card-text text-center  cartDetails">
+                      New Price:{" "}
+                      <div className="cartItem">
+                        {cartItem.productId.finalPrice}
+                        EG
+                      </div>{" "}
+                    </p>
+                    <p className="card-text text-center  cartDetails">
+                      discount:{" "}
+                      <div className="cartItem">
+                        {cartItem.productId.discount}%
+                      </div>{" "}
+                    </p>
                   </div>
                   <div>
                     <button
                       className="btn btn-outline-success btn-sm me-2"
-                      onClick={() => handleIncreaseQuantity(cartItem.productId._id, cartItem.quantity)}
+                      onClick={() =>
+                        handleIncreaseQuantity(
+                          cartItem.productId._id,
+                          cartItem.quantity
+                        )
+                      }
                       disabled={updatingItemId === cartItem.productId._id}
                     >
                       +
                     </button>
+                    <p className="card-text text-center fw-bold d-inline">
+                      {cartItem.quantity}
+                    </p>
                     <button
-                      className="btn btn-outline-danger btn-sm"
-                      onClick={() => handleDecreaseQuantity(cartItem.productId._id, cartItem.quantity)}
+                      className="btn btn-outline-success btn-sm ms-2"
+                      onClick={() =>
+                        handleDecreaseQuantity(
+                          cartItem.productId._id,
+                          cartItem.quantity
+                        )
+                      }
                       disabled={updatingItemId === cartItem.productId._id}
                     >
                       -
                     </button>
                     <button
-                      className="btn btn-outline-secondary btn-sm ms-2"
-                      onClick={() => handleRemoveItem(cartItem.productId._id, true)}
+                      className="btn btn-outline-danger btn-sm ms-2 d-block removeBtn"
+                      onClick={() =>
+                        handleRemoveItem(cartItem.productId._id, true)
+                      }
                       disabled={updatingItemId === cartItem.productId._id}
                     >
                       {updatingItemId === cartItem.productId._id ? (
-                        <span className="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                        <span
+                          className="spinner-border spinner-border-sm"
+                          role="status"
+                          aria-hidden="true"
+                        ></span>
                       ) : (
-                        'Remove'
+                        "Remove"
                       )}
                     </button>
                   </div>
@@ -203,7 +274,7 @@ const Cart = () => {
       </div>
 
       <div className="d-flex flex-column align-items-center my-5">
-        <h4 className="text-success fw-bold">Cart Summary</h4>
+        <h5 className=" summary">Cart Summary</h5>
         <table className="table table-bordered mt-3">
           <tbody>
             <tr>
@@ -219,12 +290,19 @@ const Cart = () => {
               <td>{cartItems.itemCounts?.subcategoryCount}</td>
             </tr>
             <tr>
-              <td>Total Count</td>
-              <td>{cartItems.itemCounts?.totalCount}</td>
+              <td className="total">Total Count</td>
+              <td className="total">{cartItems.itemCounts?.totalCount}</td>
             </tr>
           </tbody>
         </table>
-        <button className="btn btn-outline-success my-3 btn-sm ms-2" onClick={handleCheckout}>Checkout</button>
+        <p className="checkText">Now It is The Time To Check Out</p>
+        <button
+          className="btn btn-outline-secondary my-3 btn-sm ms-2 checkBtn"
+          onClick={handleCheckout}
+        >
+          Checkout
+          <i className="fa-solid fa-arrow-right ms-3"></i>
+        </button>
       </div>
     </div>
   );

@@ -73,35 +73,55 @@ const Allproducts = () => {
 
   return (
     <div className="container">
-      <h1 className="my-4">Our Available Products</h1>
-      <Search onSearch={handleSearch} />
-      <div className="mb-3">
-        <select className="form-select" onChange={(e) => handleCategorySelect(e.target.value)}>
+      <p className="text-center productsHead">Products</p>
+      <h1 className="text-center productsInfo">Our Available Products</h1>
+      <div className="d-flex justify-content-around mb-3">
+        <Search onSearch={handleSearch} />
+        <select
+          className="form-select"
+          onChange={(e) => handleCategorySelect(e.target.value)}
+          style={{ width: "200px" }}
+        >
           <option value="">All Categories</option>
-          {categories?.map(category => (
-            <option key={category._id} value={category._id}>{category.Name}</option>
+          {categories?.map((category) => (
+            <option key={category._id} value={category._id}>
+              {category.Name}
+            </option>
           ))}
         </select>
       </div>
+
       {loading ? (
         <div className="d-flex justify-content-center mt-5">
           <i className="fas fa-spin fa-spinner fs-1 text-success"></i>
         </div>
       ) : (
         <div className="card-container">
-          {items?.map(item => (
+          {items?.map((item) => (
             <div key={item._id} className="col-lg-3 col-md-4 col-sm-6 my-3">
-              <div className="card">
-                <img src={item.defaultImage?.url || item.Image?.Url} className="card-img-top" alt={item.Name} />
+              <div className="card cardItem">
+                <img
+                  src={item.defaultImage?.url || item.Image?.Url}
+                  className="card-img-top cardImg"
+                  alt={item.Name}
+                />
+                <hr />
                 <div className="card-body">
-                  <h5 className="card-title text-center">{item.Name}</h5>
-                  <p className="card-text text-center text-success fw-bold">{item.price ? `${item.price} EG` : 'No price available'}</p>
+                  <h5 className="card-title text-center cartT">{item.Name}</h5>
+                  <p className="card-text text-center cartP">
+                    {item.price ? `${item.price} EG` : "No price available"}
+                  </p>
                   <div className="d-flex justify-content-center">
                     <Link
-                      to={selectedCategoryId ? `/category/${selectedCategoryId}/subcategory/${item._id}` : `/product/${item._id}`}
-                      className="btn btn-success"
+                      to={
+                        selectedCategoryId
+                          ? `/category/${selectedCategoryId}/subcategory/${item._id}`
+                          : `/product/${item._id}`
+                      }
+                      className="btn chooseBtn"
                     >
-                      Choose This {selectedCategoryId ? 'Subcategory' : 'Product'}
+                      Choose This{" "}
+                      {selectedCategoryId ? "Subcategory" : "Product"}
                     </Link>
                   </div>
                 </div>

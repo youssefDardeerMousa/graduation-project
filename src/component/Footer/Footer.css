@@ -1,0 +1,57 @@
+.Footer{
+    background-color: #EEEEEE;
+    box-shadow: 1px -6px 6px 0px rgba(122,122,122,0.38);
+    -webkit-box-shadow: 1px -6px 6px 0px rgba(122,122,122,0.38);
+    -moz-box-shadow: 1px -6px 6px 0px rgba(122,122,122,0.38);;
+}
+
+.textF{
+    font-weight: bolder;
+    font-size: 32px;
+    padding-top: 25px;
+    padding-left: 10px;
+}
+
+.logoF{
+    margin-top: 10px;
+}
+
+.paraF{
+    width: 220px;
+    opacity: 90%;
+    padding-bottom: 25px;
+}
+
+.socialF{
+    color: #229954;
+}
+
+.textFH{
+    color: #000000;
+    font-weight: bolder;
+    padding-top: 25px;
+    text-decoration: none;
+    font-size: 22px;
+    padding-left: 200px;
+}
+
+.textL{
+    color: #000000;
+    padding-left: 200px;
+    padding-bottom: 8px;
+}
+
+.finalF{
+    font-size: 20px;
+}
+
+.copyIcon{
+    color: #229954;
+    font-size: 25px;
+    font-weight: 800;
+}
+
+.iconF{
+    color: #145A32;
+    padding-right: 5px;
+}

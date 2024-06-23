@@ -95,7 +95,7 @@ const ProductDetails = () => {
 
   return (
     <div className="product-details-container container">
-      <h3 className="text-center my-5 text-success fw-bold">Product Details</h3>
+      <h3 className="text-center  detailsText">Product Details</h3>
       <div className="row product-details">
         <div className="col-lg-6 image-section text-center">
           <div className="main-image mb-4">
@@ -113,35 +113,87 @@ const ProductDetails = () => {
             ))}
           </div>
         </div>
-        <div className="col-lg-6 product-info border p-4">
-          <h2 className="mb-3 text-success fw-bold">{Name}</h2>
-          <p className="price text-success fw-bold">Old price: {price ? `${price} EG` : 'No price available'}</p>
-          <p className="price text-success fw-bold">New price: {finalPrice ? `${finalPrice} EG` : 'No price available'}</p>
-          {discount && <p className="discount text-success fw-bold">Discount: {discount}%</p>}
-          <p className="availability text-success fw-bold">
-            Availability: {availableItems > 0 ? 'Available' : 'Not Available'}
+        <div className="col-lg-6 product-info border p-4 shadow detailCart">
+          <h2 className="mb-3 detailsCartHead">{Name}</h2>
+          <p className="price ">
+            Old price:{" "}
+            <div className="cartText">
+              {price ? `${price} EG` : "No price available"}
+            </div>
           </p>
-          <p className="stock text-success fw-bold">In stock: {availableItems} units</p>
-          <p className="sold text-success fw-bold">Sold: {soldItems} units</p>
-          <p className="description text-success fw-bold">Description: {description}</p>
-          <div className="quantity my-3 text-success fw-bold">
-            <label htmlFor="quantity" className="form-label">Quantity: </label>
-            <div className="input-group">
-              <button className="btn btn-outline-secondary" type="button" onClick={() => handleQuantityChange(-1)}>-</button>
-              <input type="text" className="form-control text-center text-success fw-bold" value={quantity} readOnly />
-              <button className="btn btn-outline-secondary" type="button" onClick={() => handleQuantityChange(1)}>+</button>
+          <p className="price ">
+            New price:{" "}
+            <div className="cartText">
+              {finalPrice ? `${finalPrice} EG` : "No price available"}
+            </div>
+          </p>
+          {discount && (
+            <p className="discount ">
+              Discount: <div className="cartText">{discount}%</div>
+            </p>
+          )}
+          <p className="availability ">
+            Availability:{" "}
+            <div className="cartText">
+              {availableItems > 0 ? "Available" : "Not Available"}
+            </div>
+          </p>
+          <p className="stock ">
+            In stock: <div className="cartText">{availableItems} units</div>
+          </p>
+          <p className="sold ">
+            Sold: <div className="cartText">{soldItems} units</div>
+          </p>
+
+          <div className="quantity my-3 ">
+            <label htmlFor="quantity" className="form-label quantity">
+              Quantity:{" "}
+            </label>
+            <div className="input-group quantityInput">
+              <button
+                className="btn btn-outline-success"
+                type="button"
+                onClick={() => handleQuantityChange(-1)}
+              >
+                -
+              </button>
+              <input
+                type="text"
+                className="form-control text-center text-success fw-bold qInput"
+                value={quantity}
+                readOnly
+              />
+              <button
+                className="btn btn-outline-success"
+                type="button"
+                onClick={() => handleQuantityChange(1)}
+              >
+                +
+              </button>
             </div>
           </div>
           <div className="d-flex justify-content-center flex-column align-items-center">
-            <button className="btn btn-success my-2 w-75" onClick={handleAddToCart} disabled={addingToCart}>
-              {addingToCart ? 'Loading...' : 'Add to Cart'}
+            <button
+              className="btn detailCartBtn w-75"
+              onClick={handleAddToCart}
+              disabled={addingToCart}
+            >
+              {addingToCart ? "Loading..." : "Add to Cart"}
             </button>
-            <button className="btn btn-success my-2 w-75" onClick={handleAddToWishlist} disabled={wishlistLoading}>
-              {wishlistLoading ? 'Adding to Wishlist...' : 'Add to Wishlist'}
+            <button
+              className="btn detailCartBtn w-75"
+              onClick={handleAddToWishlist}
+              disabled={wishlistLoading}
+            >
+              {wishlistLoading ? "Adding to Wishlist..." : "Add to Wishlist"}
             </button>
           </div>
         </div>
       </div>
+      <p className="description ">
+        <div className="text-center desc">Description</div>{" "}
+        <p className="descP shadow-sm">{description}</p>
+      </p>
     </div>
   );
 };

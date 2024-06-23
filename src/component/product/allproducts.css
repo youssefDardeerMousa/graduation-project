@@ -1,26 +1,86 @@
 .card-container {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-  
-  .card {
-    width: 250px; /* Fixed width for all cards */
-    height: 350px; /* Fixed height for all cards */
-    margin: 10px;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  .card-img-top {
-    height: 200px; /* Fixed height for the image */
-    object-fit: cover; /* Ensure the image covers the area without stretching */
-  }
-  
-  .card-body {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.card {
+  width: 250px;
+  height: 350px; 
+  margin: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-img-top {
+  height: 200px; 
+  object-fit: cover; 
+}
+
+.card-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.productsHead{
+  font-size: 32px;
+  font-weight: 600;
+  color: #145A32;
+  font-family: 'Times New Roman', Times, serif;
+  text-decoration: underline;
+  text-underline-offset: 5px;
+text-decoration-thickness: 1px;
+margin-top: 25px;
+}
+
+.productsInfo{
+  margin-top: 80px;
+  margin-bottom: 15px;
+  color: #145A32;
+}
+
+.searchInput{
+  width: 650px !important;
+  margin-top: 20px;
+}
+
+.searchBtn{
+  background-color: #145A32 !important;
+  color: white !important;
+  width: 100px;
+  height: 40px;
+  font-size: 18px !important;
+}
+
+.cat{
+  width: 150px !important;
+  height: 150px !important;
+  color: #145A32;
+}
+
+.cardItem{
+  background-color: #d9d9d94e !important;
+  height: 400px;
+}
+
+.cardImg{
+  width: 220px !important;
+  margin: auto;
+ margin-top: 15px;
+}
+
+.cartT{
+  opacity: 80%;
+}
+
+.cartP{
+  color: #229954;
+}
+
+.chooseBtn{
+  background-color: #145A32 !important;
+  color: white !important;
+  font-weight:500 !important;
+}
