@@ -1,13 +1,13 @@
 import React from "react";
 import { Carousel, Container, Button } from "react-bootstrap";
 import slider1 from "../../home/assests/1 (1) 1.png";
-import slider2 from "../../home/assests/c1 1.png";
+import slider2 from "../../home/assests/2 (1) 1.png";
 
 const HeroSection = () => {
   return (
     <Carousel>
       <Carousel.Item>
-        <img className="d-block w-100" src={slider1} alt="First slide" />
+        <img className="d-block" style={{ height:350 , width:1400}} src={slider1} alt="First slide" />
         <Carousel.Caption>
           <Container className="text-center">
             <h1 style={{ color: "#27AE60", fontSize: "2.5rem" }}>WITH</h1>
@@ -44,7 +44,7 @@ const HeroSection = () => {
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
-        <img className="d-block w-100" src={slider2} alt="Second slide" />
+        <img className="d-block" style={{ height:350 , width:1400}} src={slider2} alt="Second slide" />
         <Carousel.Caption>
           <Container className="text-center">
             <h1 style={{ color: "#20C997", fontSize: "2.5rem" }}>WITH</h1>

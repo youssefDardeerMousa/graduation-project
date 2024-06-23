@@ -9,9 +9,10 @@ import {
 } from "react-bootstrap";
 import logo from "../../../assests/logo.jpg";
 import { NavLink } from "react-router-dom";
+import { useApi } from "../../../Context.js";
 
 const MyNavbar = () => {
-  return (
+   return (
     <Navbar bg="light" expand="lg" className="px-5">
       <Container fluid className="px-5">
         <NavLink to="/" className="d-flex align-items-center">
@@ -29,6 +30,7 @@ const MyNavbar = () => {
           id="basic-navbar-nav"
           className="d-flex justify-content-between align-items-center"
         >
+          
           <Nav className="mr-auto custom-nav">
             <NavLink to="/">Home</NavLink>
             <NavLink to="/products">Products</NavLink>
