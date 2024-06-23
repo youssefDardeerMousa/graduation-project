@@ -4,19 +4,20 @@ import { useNavigate } from 'react-router-dom';
 import './wishlist.css';
 
 const Wishlist = () => {
-  const { fetchWishlist, removeFromWishlist } = useApi();
-  const [wishlistItems, setWishlistItems] = useState([]);
+  const { removeFromWishlist, fetchWishlistCount, wishlistCount, setWishlistCount, addToCart } = useApi();
+  const [wishlistItems, setWishlistItems] = useState({ subcategories: [], products: [] });
   const [loading, setLoading] = useState(true);
-  const { wishlistCount, setWishlistCount } = useApi();
-  const [updatingItemId, setUpdatingItemId] = useState(null);
+  const [removingItemId, setRemovingItemId] = useState(null);
+  const [addingToCartItemId, setAddingToCartItemId] = useState(null);
   const navigate = useNavigate();
 
   useEffect(() => {
     const loadWishlist = async () => {
       setLoading(true);
       try {
-        const response = await fetchWishlist(localStorage.getItem('SecritData'));
-        setWishlistItems(response.results);
+        const response = await fetchWishlistCount();
+        console.log("response", response);
+        setWishlistItems(response.wishlist);
         setLoading(false);
       } catch (error) {
         console.error('Failed to fetch wishlist:', error);
@@ -24,23 +25,24 @@ const Wishlist = () => {
       }
     };
     loadWishlist();
-  }, [fetchWishlist]);
+  }, [fetchWishlistCount]);
 
-  const handleRemoveItem = async (itemId) => {
-    setUpdatingItemId(itemId);
+  
+
+  const handleAddToCart = async (itemId) => {
+    setAddingToCartItemId(itemId); // Set updating state for the specific item
     try {
-      const response = await removeFromWishlist(itemId);
+      console.log('Adding to cart, item ID:', itemId);
+      const response = await addToCart(itemId, 1);
       if (response.success) {
-        const updatedWishlist = await fetchWishlist(localStorage.getItem('SecritData'));
-        setWishlistItems(updatedWishlist.results);
-        setWishlistCount(updatedWishlist.results.length);
+        navigate('/cart'); // Navigate to cart on successful addition
       } else {
-        console.error('Failed to remove item from wishlist:', response.message);
+        console.error('Failed to add item to cart:', response.message);
       }
     } catch (error) {
-      console.error('Failed to remove item from wishlist:', error);
+      console.error('Failed to add item to cart:', error);
     } finally {
-      setUpdatingItemId(null);
+      setAddingToCartItemId(null); // Reset updating state
     }
   };
 
@@ -52,7 +54,7 @@ const Wishlist = () => {
     );
   }
 
-  if (wishlistItems.length === 0) {
+  if (wishlistItems.subcategories.length === 0 && wishlistItems.products.length === 0) {
     return (
       <div className="d-flex flex-column align-items-center justify-content-center empty-wishlist-message">
         <i className="fas fa-heart fs-1 text-secondary mb-3"></i>
@@ -62,36 +64,70 @@ const Wishlist = () => {
   }
 
   return (
-    <div className="container mt-5">
-      <div className="row">
-        {wishlistItems.map((item) => (
-          <div key={item._id} className="col-md-4 mb-4">
-            <div className="card h-100 shadow-sm">
-              <img
-                src={item.defaultImage.url}
-                alt={item.Name}
-                className="card-img-top"
-                onClick={() => navigate(`/productdetails/${item._id}`)}
-              />
-              <div className="card-body d-flex flex-column">
-                <h5 className="card-title">{item.Name}</h5>
-                <button
-                  className="btn btn-danger mt-auto"
-                  onClick={() => handleRemoveItem(item._id)}
-                  disabled={updatingItemId === item._id}
-                >
-                  {updatingItemId === item._id ? (
-                    <i className="fas fa-spin fa-spinner"></i>
-                  ) : (
-                    <i className="fas fa-trash"></i>
-                  )}
-                  Remove
-                </button>
+    <div className="row">
+      {wishlistItems.subcategories.map((cartItem, index) => (
+        <div key={index} className="col-lg-3 col-md-4 col-sm-6 my-3 mb-4">
+          {cartItem.subcategoryId && (
+            <div className="card">
+              <div className="card-body d-flex justify-content-between align-items-center">
+                <div>
+                  <img src={cartItem.subcategoryId.Image.Url} className='w-100' alt="" />
+                  <h5 className="card-title text-center text-success fw-bold">{cartItem.subcategoryId.Name}</h5>
+                  <p className="card-text text-center text-success fw-bold">Old Price: {cartItem.subcategoryId.price} EG</p>
+                  <p className="card-text text-center text-success fw-bold">New Price: {cartItem.subcategoryId.finalPrice} EG</p>
+                  <p className="card-text text-center text-success fw-bold">discount: {cartItem.subcategoryId.discount} %</p>
+                </div>
+                <div className="d-flex justify-content-between w-100 mt-3">
+ 
+                  <button
+                    className="btn btn-success mx-auto"
+                    onClick={() => handleAddToCart(cartItem.subcategoryId._id)}
+                    disabled={addingToCartItemId === cartItem.subcategoryId._id}
+                  >
+                    {addingToCartItemId === cartItem.subcategoryId._id ? (
+                      <i className='fas fa-spinner fa-spin fs-4 text-dark'></i>
+                    ) : (
+                      'Add to Cart'
+                    )}
+                  </button>
+                </div>
               </div>
             </div>
-          </div>
-        ))}
-      </div>
+          )}
+        </div>
+      ))}
+
+      {wishlistItems.products.map((cartItem, index) => (
+        <div key={index} className="col-lg-3 col-md-4 col-sm-6 my-3 mb-4">
+          {cartItem.productId && (
+            <div className="card">
+              <div className="card-body d-flex justify-content-between align-items-center">
+                <div>
+                  <img src={cartItem.productId.defaultImage.url} className='w-100' alt="" />
+                  <h5 className="card-title text-center text-success fw-bold">{cartItem.productId.Name}</h5>
+                  <p className="card-text text-center text-success fw-bold">Old Price: {cartItem.productId.finalPrice} EG</p>
+                  <p className="card-text text-center text-success fw-bold">New Price: {cartItem.productId.finalPrice} EG</p>
+                  <p className="card-text text-center text-success fw-bold">discount: {cartItem.productId.discount} %</p>
+                </div>
+                <div className="d-flex justify-content-between w-100 mt-3">
+ 
+                  <button
+                    className="btn btn-success mx-auto"
+                    onClick={() => handleAddToCart(cartItem.productId._id)}
+                    disabled={addingToCartItemId === cartItem.productId._id}
+                  >
+                    {addingToCartItemId === cartItem.productId._id ? (
+                      <i className='fas fa-spinner fa-spin fs-4 text-dark'></i>
+                    ) : (
+                      'Add to Cart'
+                    )}
+                  </button>
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      ))}
     </div>
   );
 };

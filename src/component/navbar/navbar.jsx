@@ -30,7 +30,7 @@ const Navbarbuild = () => {
               Products
             </NavLink>
             <NavLink to="/" className="nav-link">
-              Blog
+              Best Seller
             </NavLink>
             <NavLink to="/" className="nav-link">
               About Us

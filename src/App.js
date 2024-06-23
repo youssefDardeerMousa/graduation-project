@@ -15,7 +15,8 @@ import Productdetails from './component/productdetails/ProductDetails.jsx';
 import Cart from './component/cart/cart.jsx';
 import Order from './component/order/order.jsx';
 import Wishlist from './component/wishlist/wishlist.jsx';
-
+import Aboutus from './component/aboutus/aboutus.jsx';
+//Aboutus
 export default function App() {
   const router = createBrowserRouter([
     {
@@ -35,7 +36,9 @@ export default function App() {
         { path: "/product/:id", element: <Productdetails /> },
         { path: "/category/:categoryId/subcategory/:id", element: <Productdetails /> },
         { path: "/cart", element: <Cart /> },
-        { path: "/wishlist", element: <Wishlist /> }
+        { path: "/wishlist", element: <Wishlist /> },
+        { path: "/Aboutus", element: <Aboutus /> }
+
       ],
     },
   ]);

@@ -9,20 +9,27 @@ export const ApiProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
-  
 
   useEffect(() => {
     setAuthToken();
-    // Fetch cart count from local storage on component mount
+    // Fetch cart and wishlist counts from local storage on component mount
     const initialCartCount = localStorage.getItem('cartCount') || 0;
+    const initialWishlistCount = localStorage.getItem('wishlistCount') || 0;
+
     setCartCount(Number(initialCartCount));
+    setWishlistCount(Number(initialWishlistCount));
     fetchWishlistCount();
   }, []);
 
   useEffect(() => {
     // Save cart count to local storage whenever it changes
-    // localStorage.setItem('cartCount', cartCount);
+    localStorage.setItem('cartCount', cartCount);
   }, [cartCount]);
+
+  useEffect(() => {
+    // Save wishlist count to local storage whenever it changes
+    localStorage.setItem('wishlistCount', wishlistCount);
+  }, [wishlistCount]);
 
   const setAuthToken = () => {
     const storedToken = localStorage.getItem('SecritData');
@@ -213,6 +220,7 @@ export const ApiProvider = ({ children }) => {
     });
     return response.data;
   };
+
   const fetchWishlistCount = async () => {
     try {
       const response = await axios.get('https://clean-green-agriculture.vercel.app/wishlist', {
@@ -220,7 +228,9 @@ export const ApiProvider = ({ children }) => {
           token: `CleanAndGreen_${localStorage.getItem('SecritData')}`,
         },
       });
-      setWishlistCount(response.data.results.length);
+      setWishlistCount(response.data.wishlist.totalCount);
+      return response.data
+      
     } catch (error) {
       console.error('Failed to fetch wishlist count:', error);
     }
@@ -237,7 +247,10 @@ export const ApiProvider = ({ children }) => {
         },
       });
       if (response.data.success) {
-        fetchWishlistCount();
+        const newWishlistCount = wishlistCount + 1;
+        setWishlistCount(newWishlistCount);
+        // Update local storage with new wishlist count
+        localStorage.setItem('wishlistCount', newWishlistCount);
       }
       console.log("response.data", response.data);
       return response.data;
@@ -249,7 +262,6 @@ export const ApiProvider = ({ children }) => {
       };
     }
   };
-  
 
   const removeFromWishlist = async (itemId) => {
     try {
@@ -261,7 +273,10 @@ export const ApiProvider = ({ children }) => {
         },
       });
       if (response.data.success) {
-        fetchWishlistCount();
+        const newWishlistCount = wishlistCount - 1;
+        setWishlistCount(newWishlistCount);
+        // Update local storage with new wishlist count
+        localStorage.setItem('wishlistCount', newWishlistCount);
       }
       return response.data;
     } catch (error) {
@@ -271,6 +286,7 @@ export const ApiProvider = ({ children }) => {
       };
     }
   };
+
   return (
     <ApiContext.Provider value={{
       setAuthToken,
@@ -282,18 +298,19 @@ export const ApiProvider = ({ children }) => {
       fetchProductById,
       fetchSubcategoryById,
       addToCart,
-      fetchCart,
       updateCart,
       removeProductFromCart,
       clearCart,
       fetchCoupons,
       createOrder,
-      cartCount,
-      token,
-      setCartCount,
       updateToken,
+      fetchCart,
+      fetchWishlistCount,
       addToWishlist,
       removeFromWishlist,
+      cartCount,
+      setCartCount,
+      setWishlistCount,
       wishlistCount
     }}>
       {children}
@@ -302,6 +319,4 @@ export const ApiProvider = ({ children }) => {
 };
 
 // Custom hook to use the API context
-export const useApi = () => {
-  return useContext(ApiContext);
-};
+export const useApi = () => useContext(ApiContext);
